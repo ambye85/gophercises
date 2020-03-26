@@ -1,7 +1,6 @@
 package link
 
 import (
-	"fmt"
 	"golang.org/x/net/html"
 	"io"
 	"strings"
@@ -22,7 +21,6 @@ func Parse(r io.Reader) ([]Link, error) {
 	for _, node := range nodes {
 		links = append(links, buildLink(node))
 	}
-	fmt.Print(links)
 	return links, nil
 }
 
