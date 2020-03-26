@@ -43,31 +43,6 @@ func main() {
 	}
 }
 
-//func bfs(urlStr string, maxDepth int) []string {
-//	seen := make(map[string]struct{})
-//	var q map[string]struct{}
-//	nq := map[string]struct{}{
-//		urlStr: struct{}{},
-//	}
-//	for i := 0; i <= maxDepth; i++ {
-//		q, nq = nq, make(map[string]struct{})
-//		for href, _ := range q {
-//			if _, ok := seen[href]; ok {
-//				continue
-//			}
-//			seen[href] = struct{}{}
-//			for _, l := range get(href) {
-//				nq[l] = struct{}{}
-//			}
-//		}
-//	}
-//	ret := make([]string, 0, len(seen))
-//	for u, _ := range seen {
-//		ret = append(ret, u)
-//	}
-//	return ret
-//}
-
 type empty struct{}
 
 func bfs(urlStr string, maxDepth int) []string {
@@ -134,47 +109,3 @@ func withPrefix(pfx string) func(string) bool {
 		return strings.HasPrefix(l, pfx)
 	}
 }
-
-//func main() {
-//	// if link not already visited
-//	// Add link to queue
-//	// Get page
-//	// Parse links
-//
-//	rootUrl := flag.String("url", "https://google.com/", "the root url from which to build the sitemap")
-//
-//	if !strings.HasSuffix(*rootUrl, "/") {
-//		*rootUrl = *rootUrl + "/"
-//	}
-//
-//	visitedUrls := map[string]bool{*rootUrl: true}
-//	nextUrls := []string{*rootUrl}
-//
-//	for page := nextUrls[0]; len(nextUrls) != 0; nextUrls = nextUrls[1:] {
-//		//page := nextUrls[0]
-//		//nextUrls = nextUrls[1:]
-//
-//		visitedUrls[page] = true
-//		resp, err := http.Get(page)
-//		if err != nil {
-//			panic(err)
-//		}
-//		defer resp.Body.Close()
-//		links, err := link.Parse(resp.Body)
-//		if err != nil {
-//			panic(err)
-//		}
-//
-//		for _, url := range links {
-//			href := url.Href
-//			if strings.HasPrefix(href, "/") {
-//				href = *rootUrl + href[1:]
-//			}
-//			if _, visited := visitedUrls[url.Href]; !visited && (strings.HasPrefix(url.Href, *rootUrl)) {
-//				nextUrls = append(nextUrls, url.Href)
-//				fmt.Printf("%+v", visitedUrls)
-//				fmt.Println(!visited, url.Href)
-//			}
-//		}
-//	}
-//}
